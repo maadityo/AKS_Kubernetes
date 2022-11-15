@@ -1,14 +1,14 @@
 ##PREREQ
 ##COPY FROM MODULE TO C:\Kubernetes1 : selesai
 
-$INSTANCE_ID="mathias"
+$INSTANCE_ID="mathias"  #isi dengan nama kelompok
 $AKS_RESOURCE_GROUP="azure-$($INSTANCE_ID)-rg"
 $LOCATION="Southeastasia"
 $AKS_IDENTITY="identity-$($INSTANCE_ID)"
 #$VM_SKU="Standard_D2as_v4"
 $VM_SKU="Standard_D2as_v5"
 
-$SUBS_ID="139a9f00-390b-4a62-99b3-2d64c12cf20e" #HARAP DIGANTI
+$SUBS_ID="139a9f00-390b-4a62-99b3-2d64c12cf20e" #HARAP DIGANTI dengan subscription PT Pos
 
 az vm list-sizes --location $LOCATION `
 --query "[?numberOfCores == ``2``].{Name:name}" -o table
