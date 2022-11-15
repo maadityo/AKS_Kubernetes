@@ -1,0 +1,36 @@
+#working with deployment
+#1. ng-dep.yaml file contains a deployment manifest (nginx container with a tag version)
+kubectl.exe apply -f .\ng-dep.yaml
+
+kubectl.exe get pods --show-labels
+
+kubectl.exe apply -f .\ng-svc.yaml
+# check for all, compare with the pods
+kubectl.exe get all --show-labels
+
+# check for services
+kubectl.exe get svc
+
+#update the image from NGINX 1.0 to NGINX 2.0
+kubectl set image deployment ng-dep nginx=k8slab/nginx:2.0
+
+#check the lifetime of the PODs and all
+kubectl.exe get pods
+kubectl.exe get all
+
+#check the definition deployment and replicaset rs
+kubectl.exe describe deployment 
+kubectl.exe describe rs ng-dep-7bbd6665f9  
+
+# check the rollout history and undo
+kubectl rollout history deploy/ng-dep
+kubectl rollout undo deploy/ng-dep
+
+#delete the deployment
+kubectl get services
+kubectl get deployment
+
+kubectl delete deployment ng-dep
+kubectl delete service ng-svc
+
+kubectl get pods

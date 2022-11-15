@@ -1,0 +1,12 @@
+kubectl label pod nginx-pod health=fair
+
+#1. Change an existing label on running pod
+kubectl label pod nginx-pod kind=db --overwrite
+# show the label
+kubectl get pod nginx-pod --show-labels
+# remove  the existing label
+kubectl label pod nginx-pod health-
+
+kubectl get pods --show-labels
+# remove pod based on specific label
+kubectl delete pod -l target=dev 

@@ -1,0 +1,17 @@
+cd "C:\Users\maadityo\OneDrive - Microsoft\#FY23\PTPos\module1"
+
+#1. create simple nginx first pod 
+kubectl.exe apply -f .\simple-pod2.yaml
+
+#2. create simple nginx second pod 
+kubectl.exe apply -f .\simple-pod.yaml
+
+#3 make sure pod is up and running
+kubectl.exe get pod --show-labels
+
+#3A show some filters
+kubectl.exe get pod -l kind=api
+
+#4. view complete definition of POD
+kubectl get pods nginx-pod -o yaml > mypod.yaml
+code mypod.yaml
