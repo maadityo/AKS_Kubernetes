@@ -45,6 +45,7 @@ Upload Module1 Folder To Cloud Drive
  ![image](https://user-images.githubusercontent.com/23251706/202055685-d14da72d-d672-4fd3-ae19-98f7b1e4d55b.png)
 
 10.	Klik “Upload”
+
  ![image](https://user-images.githubusercontent.com/23251706/202055695-2925e8a7-b5a1-440b-9350-ac3587be9392.png)
 
 
