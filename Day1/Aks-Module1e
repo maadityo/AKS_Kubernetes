@@ -1,1 +1,17 @@
-#working with service
+#1. Buat service Baru
+#1.1 Buat Deployment
+#silahkan buka file yaml nya dan coba dimengerti terlebih dahulu
+kubectl apply -f sample-dep.yaml
+
+#1.2 Review Pod dan labels setelah selesai dideploy
+kubectl get pods --show-labels
+
+#1.3 deploy file yaml tambahan
+kubectl apply -f sample-svc.yaml
+
+#1.4 cek ulang service yang baru dideploy
+kubectl get svc -o wide
+
+
+#2akses sample-svc service
+#buka browser dan navigate ke IP untuk melakukan pengecekan
