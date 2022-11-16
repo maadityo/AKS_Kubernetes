@@ -1,6 +1,6 @@
 ##PREREQ
 ##COPY FROM MODULE TO C:\Kubernetes1 : selesai
-
+#Variabel konfigurasi, harap disesuaikan
 $INSTANCE_ID="mathias"  #isi dengan nama kelompok
 $AKS_RESOURCE_GROUP="azure-$($INSTANCE_ID)-rg"
 $LOCATION="Southeastasia"
