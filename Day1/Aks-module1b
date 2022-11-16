@@ -16,3 +16,6 @@ kubectl.exe get pod -l kind=api
 #4. view complete definition of POD
 kubectl get pods nginx-pod -o yaml > mypod.yaml
 code mypod.yaml
+
+#5. view get nodes with extra parameter
+kubectl get nodes -o wide
