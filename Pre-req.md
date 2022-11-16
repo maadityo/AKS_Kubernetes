@@ -59,7 +59,7 @@ cd clouddrive
  
 
 13.	Melakukan command “cd Module1”
- ![Uploading image.png…]()
+![image](https://user-images.githubusercontent.com/23251706/202111975-aee152e6-1249-47ed-abe2-68f246b370cf.png)
 
 
 14.	Maka dapat melakukan command menggunakan file .yaml yang terdapat pada folder Module1
