@@ -36,7 +36,34 @@ kubectl get nodes -l="kubernetes.io/os=linux"
 #5 dapatkan semua notepools
 az aks nodepool list --cluster-name $AKS_NAME --resource-group $AKS_RESOURCE_GROUP -o table
 
-#6 configurasi auto scaler
+
+#6 buat windows user node pool
+az aks nodepool add --resource-group $AKS_RESOURCE_GROUP `
+--cluster-name $AKS_NAME `
+--os-type Windows `
+--name win1 `
+--node-count 1 `
+--mode User `
+--node-vm-size $VM_SKU
+
+#7 cek nodes yang sudah dibuat , ada berapa total nodes yang dibuat ?
+kubectl get nodes 
+
+#8 dapatkan semua system nodes yang sudah dideploy, total berapa nodes ?
+kubectl get nodes -l="kubernetes.azure.com/mode=system"
+
+#9 dapatkan semua linux OS , total berapa nodes ?
+kubectl get nodes -l="kubernetes.io/os=linux"
+
+#10 dapatkan semua nodes dengan detail 
+az aks nodepool list --cluster-name $AKS_NAME --resource-group $AKS_RESOURCE_GROUP -o table
+
+az aks list -o table
+
+az aks scale --resource-group $AKS_RESOURCE_GROUP --name $AKS_NAME --node-count 1 --nodepool-name win1
+
+
+# configurasi auto scaler
 az aks update --resource-group $AKS_RESOURCE_GROUP `
 --name $AKS_NAME `
 --cluster-autoscaler-profile `
@@ -44,3 +71,7 @@ scale -down-delay-after-add = 1 m `
 scale -down-unready-time = 1 m `
 scale -down-unneeded-time = 1 m `
 skip-nodes -with-system-pods =true
+
+
+
+az aks list --resource-group $AKS_RESOURCE_GROUP --name $AKS_NAME --cluster-autoscaler-profile
