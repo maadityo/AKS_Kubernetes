@@ -58,8 +58,8 @@ az aks create --resource-group $AKS_RESOURCE_GROUP `
 --min-count 1 `
 --max-count 3 `
 --network-plugin azure `
---service-cidr "10.220.21.0/24" `
---dns-service-ip "10.220.21.10" `
+--service-cidr "10.220.$($NO_KELOMPOK2).0/24" `
+--dns-service-ip "10.220.$($NO_KELOMPOK2).10" `
 --docker-bridge-address 172.17.0.1/16 `
 --vnet-subnet-id $AKS_VNET_SUBNET_ID `
 --node-vm-size $VM_SKU `
