@@ -1,0 +1,83 @@
+#Variabel konfigurasi, harap disesuaikan
+###########################################################################################
+$INSTANCE_ID="mathias-day2"  #isi dengan nama kelompok
+$NO_KELOMPOK= "20" #isi dengan nomer kelompok lalu dikali 10 (con, kelompok3 masukkan 20)
+$NO_KELOMPOK2= "21" #isi dengan nomer kelompok sebelumnya lalu ditambah 1 (con, kelompok3 masukkan 21)
+$AKS_RESOURCE_GROUP="azure-$($INSTANCE_ID)-rg"
+$LOCATION="Southeastasia"
+$AKS_IDENTITY="identity-$($INSTANCE_ID)"
+#$VM_SKU="Standard_D2as_v4"
+$VM_SKU="Standard_D2as_v5"
+$SUBS_ID="139a9f00-390b-4a62-99b3-2d64c12cf20e" #HARAP DIGANTI dengan subscription PT Pos
+$AKS_NAME="aks-$($INSTANCE_ID)"
+#############################################################################################
+
+#1 buat resource group
+az group create --location $LOCATION --resource-group $AKS_RESOURCE_GROUP
+
+#2 buat user manage identity untuk AKS connectivity
+
+$AKS_IDENTITY_ID= $(az identity create --name $AKS_IDENTITY --resource-group $AKS_RESOURCE_GROUP  --query id -o tsv)
+
+#3 buat virtual network dan subnet untuk AKS.
+####################################################
+#PARAMETER untuk Vnet dan Subnet
+$AKS_VNET= "aks-$($INSTANCE_ID)-vnet"
+$AKS_VNET_SUBNET="aks-$($INSTANCE_ID)-subnet"
+$AKS_VNET_ADDRESS_PREFIX="10.220.$($NO_KELOMPOK).0/23"
+$AKS_VNET_SUBNET_PREFIX="10.220.$($NO_KELOMPOK).0/24"
+####################################################
+
+#4 deploy vnet dan subnet nya. 
+az network vnet create --resource-group $AKS_RESOURCE_GROUP `
+--name $AKS_VNET `
+--address-prefix $AKS_VNET_ADDRESS_PREFIX `
+--subnet-name $AKS_VNET_SUBNET `
+--subnet-prefix $AKS_VNET_SUBNET_PREFIX
+
+#5 dapatkan vnet default subnet id
+$AKS_VNET_SUBNET_ID =$(az network vnet subnet show --resource-group $AKS_RESOURCE_GROUP --vnet-name $AKS_VNET --name $AKS_VNET_SUBNET --query id -o tsv)
+Write-Host "Default Subnet ID: $AKS_VNET_SUBNET_ID"
+
+
+#6 buat log analytics workspace (LAW)
+$LOG_ANALYTICS_WORKSPACE_NAME = "aks-$($INSTANCE_ID)-law" 
+$LOG_ANALYTICS_WORKSPACE_RESOURCE_ID =$(az monitor log-analytics workspace create --resource-group $AKS_RESOURCE_GROUP --workspace-name $LOG_ANALYTICS_WORKSPACE_NAME --query id -o tsv)
+Write-Host "LAW Workspace Resource ID: $LOG_ANALYTICS_WORKSPACE_RESOURCE_ID"
+
+#7 buat AKS cluster dengan system node pool
+$AKS_NAME = "aks-$($INSTANCE_ID)" 
+Write-Host "AKS Cluster Name: $AKS_NAME"
+write-host "$($NO_KELOMPOK2)"
+az aks create --resource-group $AKS_RESOURCE_GROUP `
+--generate-ssh-keys `
+--enable-managed-identity `
+--assign-identity $AKS_IDENTITY_ID `
+--node-count 1 `
+--enable-cluster-autoscaler `
+--min-count 1 `
+--max-count 3 `
+--network-plugin azure `
+--service-cidr "10.220.21.0/24" `
+--dns-service-ip "10.220.21.10" `
+--docker-bridge-address 172.17.0.1/16 `
+--vnet-subnet-id $AKS_VNET_SUBNET_ID `
+--node-vm-size $VM_SKU `
+--nodepool-name system1 `
+--enable-addons monitoring `
+--workspace-resource-id $LOG_ANALYTICS_WORKSPACE_RESOURCE_ID `
+--enable-ahub `
+--name $AKS_NAME
+
+
+#8 get credential untuk aks yang baru selesai di buat
+az aks get-credentials --name $AKS_NAME --resource-group $AKS_RESOURCE_GROUP
+
+#9 cek node yang sudah di create
+kubectl get nodes
+
+#10 cek untuk system nodes
+kubectl get nodes -l="kubernetes.azure.com/mode=system" -o wide
+
+#11 cek untuk node pool 
+az aks nodepool list --cluster-name $AKS_NAME --resource-group $AKS_RESOURCE_GROUP -o table
