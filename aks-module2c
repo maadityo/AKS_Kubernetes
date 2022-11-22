@@ -1,0 +1,29 @@
+#Variabel konfigurasi, harap disesuaikan
+###########################################################################################
+$INSTANCE_ID="mathias-day2"  #isi dengan nama kelompok
+$NO_KELOMPOK= "20" #isi dengan nomer kelompok lalu dikali 10 (con, kelompok3 masukkan 20)
+$NO_KELOMPOK2= "21" #isi dengan nomer kelompok sebelumnya lalu ditambah 1 (con, kelompok3 masukkan 21)
+$AKS_RESOURCE_GROUP="azure-$($INSTANCE_ID)-rg"
+$LOCATION="Southeastasia"
+$AKS_IDENTITY="identity-$($INSTANCE_ID)"
+#$VM_SKU="Standard_D2as_v4"
+$VM_SKU="Standard_D2as_v5"
+$SUBS_ID="139a9f00-390b-4a62-99b3-2d64c12cf20e" #HARAP DIGANTI dengan subscription PT Pos
+$AKS_NAME="aks-$($INSTANCE_ID)"
+#############################################################################################
+
+#1 buat linux USER POOL
+cd C:\k8s\labs\Module2
+
+#2 
+kubectl apply -f workload.yaml
+
+#3
+kubectl get pods -o wide
+
+#4
+kubectl describe pod <failed pod name>
+
+#5
+nodeSelector: 
+    kubernetes.io/os:linux

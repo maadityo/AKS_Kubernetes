@@ -25,4 +25,22 @@ az aks nodepool add --resource-group $AKS_RESOURCE_GROUP `
 --node-vm-size $VM_SKU
 
 #2 cek nodes yang sudah dibuat
-kubectl get nodes
+kubectl get nodes 
+
+#3 dapatkan semua system nodes yang sudah dideploy
+kubectl get nodes -l="kubernetes.azure.com/mode=system"
+
+#4 dapatkan semua linux OS
+kubectl get nodes -l="kubernetes.io/os=linux"
+
+#5 dapatkan semua notepools
+az aks nodepool list --cluster-name $AKS_NAME --resource-group $AKS_RESOURCE_GROUP -o table
+
+#6 configurasi auto scaler
+az aks update --resource-group $AKS_RESOURCE_GROUP `
+--name $AKS_NAME `
+--cluster-autoscaler-profile `
+scale -down-delay-after-add = 1 m `
+scale -down-unready-time = 1 m `
+scale -down-unneeded-time = 1 m `
+skip-nodes -with-system-pods =true
