@@ -1,8 +1,8 @@
 #Variabel konfigurasi, harap disesuaikan
 ###########################################################################################
 $INSTANCE_ID="mathias-day2"  #isi dengan nama kelompok
-$NO_KELOMPOK= "20" #isi dengan nomer kelompok lalu dikali 10 (con, kelompok3 masukkan 20)
-$NO_KELOMPOK2= "21" #isi dengan nomer kelompok sebelumnya lalu ditambah 1 (con, kelompok3 masukkan 21)
+$NO_KELOMPOK= "20" #isi dengan nomer kelompok lalu dikali 10 (con, kelompok3 masukkan 30)
+$NO_KELOMPOK2= "21" #isi dengan nomer kelompok sebelumnya lalu ditambah 1 (con, kelompok3 masukkan 31)
 $AKS_RESOURCE_GROUP="azure-$($INSTANCE_ID)-rg"
 $LOCATION="Southeastasia"
 $AKS_IDENTITY="identity-$($INSTANCE_ID)"
@@ -37,7 +37,7 @@ az network vnet create --resource-group $AKS_RESOURCE_GROUP `
 
 #5 dapatkan vnet default subnet id
 $AKS_VNET_SUBNET_ID =$(az network vnet subnet show --resource-group $AKS_RESOURCE_GROUP --vnet-name $AKS_VNET --name $AKS_VNET_SUBNET --query id -o tsv)
-Write-Host "Default Subnet ID: $AKS_VNET_SUBNET_ID"
+Write-Host "Default Subnet ID: $AKS_RESOURCE_GROUP"
 
 
 #6 buat log analytics workspace (LAW)

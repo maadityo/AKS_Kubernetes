@@ -62,16 +62,20 @@ az aks list -o table
 
 az aks scale --resource-group $AKS_RESOURCE_GROUP --name $AKS_NAME --node-count 1 --nodepool-name win1
 
-
+#detail of autoscaler : https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#what-are-expanders
 # configurasi auto scaler
 az aks update --resource-group $AKS_RESOURCE_GROUP `
 --name $AKS_NAME `
 --cluster-autoscaler-profile `
-scale -down-delay-after-add = 1 m `
-scale -down-unready-time = 1 m `
-scale -down-unneeded-time = 1 m `
-skip-nodes -with-system-pods =true
+scale-down-delay-after-add=1m `
+scale-down-unready-time=1m `
+scale-down-unneeded-time=1m `
+skip-nodes-with-system-pods=true
 
+# reset konfigurasi auto scaler
+az aks update --resource-group $AKS_RESOURCE_GROUP --name $AKS_NAME --cluster-autoscaler-profile scan-interval=30s
 
-
-az aks list --resource-group $AKS_RESOURCE_GROUP --name $AKS_NAME --cluster-autoscaler-profile
+#enable the autoscaler
+az aks update --resource-group $AKS_RESOURCE_GROUP --name $AKS_NAME --disable-cluster-autoscaler
+#enable the autoscaler
+az aks update --resource-group $AKS_RESOURCE_GROUP --name $AKS_NAME --enable-cluster-autoscaler --min-count 1 --max-count 3
