@@ -16,8 +16,8 @@ $AKS_NAME="aks-$($INSTANCE_ID)"
 az aks nodepool add --resource-group $AKS_RESOURCE_GROUP `
 --cluster-name $AKS_NAME `
 --os-type Linux `
---name linux1 `
---node-count 1 `
+--name linux12 `
+--node-count 2 `
 --enable-cluster-autoscaler `
 --min-count 1 `
 --max-count 3 `
@@ -67,7 +67,7 @@ az aks scale --resource-group $AKS_RESOURCE_GROUP --name $AKS_NAME --node-count 
 az aks update --resource-group $AKS_RESOURCE_GROUP `
 --name $AKS_NAME `
 --cluster-autoscaler-profile `
-scale-down-delay-after-add=1m `
+scale-down-delay-after-add=5m `
 scale-down-unready-time=1m `
 scale-down-unneeded-time=1m `
 skip-nodes-with-system-pods=true

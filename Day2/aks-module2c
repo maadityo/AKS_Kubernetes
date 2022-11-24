@@ -12,18 +12,35 @@ $SUBS_ID="139a9f00-390b-4a62-99b3-2d64c12cf20e" #HARAP DIGANTI dengan subscripti
 $AKS_NAME="aks-$($INSTANCE_ID)"
 #############################################################################################
 
-#1 buat linux USER POOL
-cd C:\k8s\labs\Module2
+#1 use directory yaml
+cd "C:\Users\maadityo\OneDrive - Microsoft\#FY23\PTPos\Module2_final\PTPos_Kubernetes\Module2"
 
-#2 
+#2 deploy untuk workload.yaml - disini akan mendeploy nginx front end
 kubectl apply -f workload.yaml
+#kubectl describe deployment
 
-#3
+#3 cek hasil deployment
 kubectl get pods -o wide
 
-#4
-kubectl describe pod <failed pod name>
+#4 cek di status apakah ada error dan kenapa error ?
+# kubectl describe pod <failed pod name>
+kubectl describe pod #workload-748d6fdbd6-sxq9k
+kubectl describe pod #workload-748d6fdbd6-w2jf9
 
-#5
+
+#5 tambahkan detail node selector di antara spec: (line 15) dan containers:
 nodeSelector: 
     kubernetes.io/os:linux
+
+#6 re-deploy ulang
+kubectl apply -f workload.yaml
+kubectl get pods -o wide
+
+#7 #monitor apakah ada hasil yang berbeda dan apakah hasilnya sudah sesuai dengan yang diharapkan ?
+nodeSelector: 
+    kubernetes.io/os: linux
+    kubernetes.azure.com/mode: user
+
+#8 re-deploy ulang
+kubectl apply -f workload.yaml
+kubectl get pods -o wide
