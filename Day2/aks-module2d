@@ -42,4 +42,4 @@ kubectl get nodes -l="kubernetes.azure.com/mode=user","kubernetes.io/os=linux" -
 
 
 #9 monitor pod ulang
-kubectl get nodes -l="kubernetes.azure.com/mode=user","kubernetes.io/os=linux" -w
+kubectl get nodes -l="kubernetes.azure.com/mode=user","kubernetes.io/os=linux"
