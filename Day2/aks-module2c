@@ -28,7 +28,7 @@ kubectl describe pod #workload-748d6fdbd6-sxq9k
 kubectl describe pod #workload-748d6fdbd6-w2jf9
 
 
-#5 tambahkan detail node selector di antara spec: (line 15) dan containers:
+#5 tambahkan detail node selector di antara spec: (line 15) dan containers: pada YAML file
 nodeSelector: 
     kubernetes.io/os:linux
 
@@ -36,7 +36,7 @@ nodeSelector:
 kubectl apply -f workload.yaml
 kubectl get pods -o wide
 
-#7 #monitor apakah ada hasil yang berbeda dan apakah hasilnya sudah sesuai dengan yang diharapkan ?
+#7 #monitor apakah ada hasil yang berbeda dan apakah hasilnya sudah sesuai dengan yang diharapkan ? pada YAML file
 nodeSelector: 
     kubernetes.io/os: linux
     kubernetes.azure.com/mode: user
