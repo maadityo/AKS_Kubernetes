@@ -13,8 +13,6 @@ spec:
         app: workload
         color: magenta
     spec:
-      nodeSelector:
-        kubernetes.io/os: linux
       containers:
       - name: nginx
         image: nginx:1.18
