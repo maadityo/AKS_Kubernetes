@@ -16,8 +16,8 @@ $AKS_NAME="aks-$($INSTANCE_ID)"
 az aks nodepool add --resource-group $AKS_RESOURCE_GROUP `
 --cluster-name $AKS_NAME `
 --os-type Linux `
---name linux12 `
---node-count 2 `
+--name linux1 `
+--node-count 1 `
 --enable-cluster-autoscaler `
 --min-count 1 `
 --max-count 3 `
@@ -77,3 +77,12 @@ az aks update --resource-group $AKS_RESOURCE_GROUP --name $AKS_NAME --cluster-au
 
 #disable the autoscaler
 az aks update --resource-group $AKS_RESOURCE_GROUP --name $AKS_NAME --disable-cluster-autoscaler
+
+#re-enable autoscaler nodepool
+az aks nodepool update --resource-group $AKS_RESOURCE_GROUP `
+--cluster-name $AKS_NAME `
+--name linux1 `
+--enable-cluster-autoscaler `
+--min-count 1 `
+--max-count 3 `
+--mode User
