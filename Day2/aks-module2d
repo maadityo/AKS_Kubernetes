@@ -34,11 +34,12 @@ kubectl get nodes -l="kubernetes.azure.com/mode=user","kubernetes.io/os=linux" -
 kubectl apply -f workload.yaml
 kubectl get pods -o wide
 
-#7 #monitor apakah ada hasil yang berbeda dan apakah hasilnya sudah sesuai dengan yang diharapkan ?
-nodeSelector: 
-    kubernetes.io/os: linux
-    kubernetes.azure.com/mode: user
+#7 reduce the workload untuk trigger autoscaler down
+kubectl delete deploy/workload
 
 #8 re-deploy ulang
-kubectl apply -f workload.yaml
-kubectl get pods -o wide
+kubectl get nodes -l="kubernetes.azure.com/mode=user","kubernetes.io/os=linux" -w
+
+
+#9 monitor pod ulang
+kubectl get nodes -l="kubernetes.azure.com/mode=user","kubernetes.io/os=linux" -w
