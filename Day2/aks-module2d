@@ -1,0 +1,44 @@
+#Variabel konfigurasi, harap disesuaikan
+###########################################################################################
+$INSTANCE_ID="mathias-day2"  #isi dengan nama kelompok
+$NO_KELOMPOK= "20" #isi dengan nomer kelompok lalu dikali 10 (con, kelompok3 masukkan 20)
+$NO_KELOMPOK2= "21" #isi dengan nomer kelompok sebelumnya lalu ditambah 1 (con, kelompok3 masukkan 21)
+$AKS_RESOURCE_GROUP="azure-$($INSTANCE_ID)-rg"
+$LOCATION="Southeastasia"
+$AKS_IDENTITY="identity-$($INSTANCE_ID)"
+#$VM_SKU="Standard_D2as_v4"
+$VM_SKU="Standard_D2as_v5"
+$SUBS_ID="139a9f00-390b-4a62-99b3-2d64c12cf20e" #HARAP DIGANTI dengan subscription PT Pos
+$AKS_NAME="aks-$($INSTANCE_ID)"
+#############################################################################################
+
+#1 cek untuk semua linux user nodes
+kubectl get nodes -l="kubernetes.azure.com/mode=user","kubernetes.io/os=linux"
+
+#2 set trigger untuk auto scaler untuk scale up
+kubectl scale --replicas=40 deploy/workload
+
+#3 cek hasil deployment, apa ada yang berbeda ?
+kubectl get pods -o wide
+
+#4 describe kenapa pending
+# kubectl describe pod <pending pod name>
+kubectl describe pod #workload-748d6fdbd6-sxq9k
+kubectl describe pod #workload-748d6fdbd6-w2jf9
+
+
+#5 start a watch on the nodes
+kubectl get nodes -l="kubernetes.azure.com/mode=user","kubernetes.io/os=linux" -w
+
+#6 re-deploy ulang
+kubectl apply -f workload.yaml
+kubectl get pods -o wide
+
+#7 #monitor apakah ada hasil yang berbeda dan apakah hasilnya sudah sesuai dengan yang diharapkan ?
+nodeSelector: 
+    kubernetes.io/os: linux
+    kubernetes.azure.com/mode: user
+
+#8 re-deploy ulang
+kubectl apply -f workload.yaml
+kubectl get pods -o wide
