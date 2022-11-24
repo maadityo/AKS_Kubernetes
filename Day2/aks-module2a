@@ -11,7 +11,7 @@ $VM_SKU="Standard_D2as_v5"
 $SUBS_ID="139a9f00-390b-4a62-99b3-2d64c12cf20e" #HARAP DIGANTI dengan subscription PT Pos
 $AKS_NAME="aks-$($INSTANCE_ID)"
 #############################################################################################
-
+kubectl get pods
 #1 buat resource group
 az group create --location $LOCATION --resource-group $AKS_RESOURCE_GROUP
 
