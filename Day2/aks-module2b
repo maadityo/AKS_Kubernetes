@@ -75,7 +75,5 @@ skip-nodes-with-system-pods=true
 # reset konfigurasi auto scaler
 az aks update --resource-group $AKS_RESOURCE_GROUP --name $AKS_NAME --cluster-autoscaler-profile scan-interval=30s
 
-#enable the autoscaler
+#disable the autoscaler
 az aks update --resource-group $AKS_RESOURCE_GROUP --name $AKS_NAME --disable-cluster-autoscaler
-#enable the autoscaler
-az aks update --resource-group $AKS_RESOURCE_GROUP --name $AKS_NAME --enable-cluster-autoscaler --min-count 1 --max-count 3
