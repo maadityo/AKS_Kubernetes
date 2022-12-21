@@ -62,7 +62,7 @@
     **If any task fails during the execution of the script, feel free to run the script again. The script is able to create any missing artifacts.**
     **Script failures typically use red lettering unless you changed the CLI color scheme**
 
-    ![](images/CreateDevOpsAcc16.png =800x)
+![image](https://user-images.githubusercontent.com/23251706/208813425-cfc74869-873c-4a7a-858e-bfb13e6ebd35.png)
 
     > Optional
     >
