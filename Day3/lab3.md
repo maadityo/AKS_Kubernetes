@@ -2,9 +2,6 @@
 
 **Module 3: Application Security Principles**
 
-Student Lab Manual
-
-[[_TOC_]]
 
 ## Lab 1: Investigate Security Vulnerabilities
 
@@ -20,10 +17,6 @@ After completing this lab, you will be able to understand common security design
 **Prerequisites**
 
 Completed module - 0
-
-**Estimated time to complete this lab**
-
-30 Minutes
 
 **Scenario**
 
