@@ -41,7 +41,7 @@ Completed module - 0
 
     Start being familiar with this website.
 
-    ![Contoso](./Images/Module3-ContosoTimes.png =800x)
+    ![image](https://user-images.githubusercontent.com/23251706/209039508-09699f47-79a1-4f9b-8a80-eb685a8c3f8b.png)
 
 2. On the search Box, Perform a reflected XSS (Cross-Site Scripting) attack to see if the website accept, use the following code:
 
@@ -63,7 +63,7 @@ Completed module - 0
 
     Click **Log in**
 
-    ![Login](./Images/Module3-ContosoTimesLogin.png =800x)
+    ![image](https://user-images.githubusercontent.com/23251706/209039535-0b337820-8823-4888-891a-db80fb3b3b31.png)
 
 2. Click on the login item with the status 500 to explorer the unhandled exception.
 
@@ -71,11 +71,11 @@ Completed module - 0
     >
     > Error handling is also important from an intrusion detection perspective. Certain attacks against your application may trigger errors which can help detect attacks in progress.
 
-    ![](./Images/Module3-ContosoTimesLinkLogin.png =800x)
+    ![image](https://user-images.githubusercontent.com/23251706/209039564-24c842e0-fcc3-43f8-8c01-fbfecafc6739.png)
 
     Observe how the front end just shows the error as **[object Object]**. This indicates that an unhandled error was trowed by the back end and arrived just to the main page.
 
-    ![Module 3](./Images/Module3-ContosoTimesMenu.png =800x)
+    ![image](https://user-images.githubusercontent.com/23251706/209039587-06708f1a-39d5-435b-93fb-20b96f732550.png)
 
     Observe that the backend just trowed all the errors from SQLite to the front end, and now we know the backend uses SQLite you can alternatively check all the vulnerabilities for SQLite at:
 
@@ -89,11 +89,11 @@ Completed module - 0
 
     Password: `anything`
 
-    ![Contoso Text Body](./Images/Module3-ContosoTimesText.png =800x)
+    ![image](https://user-images.githubusercontent.com/23251706/209039615-59a44234-da3d-4371-82b1-f0f5229a20de.png)
 
     Note that you are now logged in as Admin, but since this is an SQL injection, all possibilities are true.
 
-    ![Contoso Text Body](./Images/Module3-ContosoTimesText2.png =600x)
+    ![image](https://user-images.githubusercontent.com/23251706/209039630-2aabcdaf-4c6e-48c7-b3d0-5e3eb74b9560.png)
 
     Now you are connected as an Admin, let's check other possibilities available.
 
@@ -103,23 +103,23 @@ OWASP Zed Attack Proxy (ZAP) is a free, open-source penetration testing tool bei
 
 1. Open OWASP ZAP, click on `Automated Scan`
 
-    ![Contoso Text Body](./Images/Module3-ContosoTimesText3.png =800x)
+    ![image](https://user-images.githubusercontent.com/23251706/209039662-27613027-decc-4dff-a371-de939cb66eec.png)
 
     Type the URL of our Juice shop and then click `Attack`.
 
-    ![Contoso Text Body](./Images/Module3-ContosoTimesText4.png =600x)
+    ![image](https://user-images.githubusercontent.com/23251706/209039701-568c3404-ab3f-4119-83c2-a8665812299a.png)
 
     > **NOTE!** You can use OWASP Zap as a tool for scan websites on your pipeline on Azure DevOps on the command line, this kind of scan is also known as Dynamic Application Security Test (DAST)
     >
     > Optional: you can explorer all the vulnerabilities found on the **Alerts** tab
 
-    ![Contoso Text Body](./Images/Module3-ContosoTimesText5.png =800x)
+    ![image](https://user-images.githubusercontent.com/23251706/209039715-41cf0101-f046-4d26-b115-67889f455e3a.png)
 
 2. Click on **Spider** to check all the hidden URLs found during the scaner
 
     Note that very interesting URL ending by "acquisitions.md ", copy that URL and paste into your browser to see the results
 
-    ![Contoso Text Body](./Images/Module3-ContosoTimesText6.png =800x)
+    ![image](https://user-images.githubusercontent.com/23251706/209039747-8c512785-bca3-4f40-bbbd-96a3e10a7c09.png)
 
     Here we can check many problems:
 
@@ -127,11 +127,11 @@ OWASP Zed Attack Proxy (ZAP) is a free, open-source penetration testing tool bei
     - Data stored without encryption
     - Confidential document about acquisitions which should never leak
   
-    ![Contoso Text Body](./Images/Module3-ContosoTimesText7.png =800x)
+    ![image](https://user-images.githubusercontent.com/23251706/209039805-29c0f9ec-05d2-4187-9a8a-1e2d26b72a2c.png)
 
     > Optional: Since you are logged in as an Admin, you can now access privileged areas on the website, for instance, all the information from customers:
 
-    ![Contoso Text Body](./Images/Module3-ContosoTimesText8.png =800x)
+    ![image](https://user-images.githubusercontent.com/23251706/209039818-ef902382-a1e8-4336-9d0c-067b6e8f3352.png)
 
 #### Task 4: Discuss your findings with the class and instructor
 
