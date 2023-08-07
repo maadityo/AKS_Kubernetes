@@ -1,5 +1,5 @@
 
-# Download file pada folder Module1 ke Drive C:\PTPos_Day1\
+# Download file pada folder Module1 ke Drive C:\AKS_Day1\
 
 Upload Module1 Folder To Cloud Drive
 
