@@ -11,3 +11,4 @@ az acr login --name $acrname
 
 
 # Module 3 run container secara local
+https://learn.microsoft.com/en-us/azure/container-registry/container-registry-get-started-docker-cli?tabs=azure-cli
