@@ -1,3 +1,5 @@
+# melakukan installasi VS COde pada laptop masing masing (optional)
+ 
 
 # Download file pada folder Module1 ke Drive C:\AKS_Day1\
 
