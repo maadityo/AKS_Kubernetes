@@ -1,11 +1,11 @@
 #harap diganti ke path tempat copy module1
-cd "C:\Users\maadityo\OneDrive - Microsoft\#FY23\PTPos\module1"
+cd "C:\Users\maadityo\OneDrive - Microsoft\#FY23\PTContoso\module1"
 
 #1. create simple nginx first pod 
-kubectl.exe apply -f .\simple-pod2.yaml
+kubectl.exe apply -f .\Module1\simple-pod2.yaml
 
 #2. create simple nginx second pod 
-kubectl.exe apply -f .\simple-pod.yaml
+kubectl.exe apply -f .\Module1\simple-pod.yaml
 
 #3 make sure pod is up and running
 kubectl.exe get pod --show-labels

@@ -1,10 +1,17 @@
-kubectl label pod nginx-pod health=fair
+# adding a label, as label is genereally useful for troubleshooting when we have many pods
+# Exercise: Adding/Updating/Deleting Labels on a Pod
+# In this Exercise, you will create a pod that has labels associated with it. Labels 
+# make it easy to filter the pods later. Labels play a vital rolein the Kubernetes 
+# ecosystem, so it's important to understand their proper usage.
 
-#1. Change an existing label on running pod
+
+# 1. Change an existing label on running pod
+kubectl label pod nginx-pod health=fair
 kubectl label pod nginx-pod kind=db --overwrite
 # show the label
 kubectl get pod nginx-pod --show-labels
 # remove  the existing label
+
 kubectl label pod nginx-pod health-
 
 kubectl get pods --show-labels

@@ -1,9 +1,9 @@
-#working with deployment
+# working with deployment
 #1. ng-dep.yaml file contains a deployment manifest (nginx container with a tag version)
-kubectl.exe apply -f .\ng-dep.yaml
+kubectl.exe apply -f .\module1\ng-dep.yaml
 
 kubectl.exe get pods --show-labels
-
+# code .\module1\ng-dep.yaml
 kubectl.exe apply -f .\ng-svc.yaml
 # check for all, compare with the pods
 kubectl.exe get all --show-labels
@@ -20,7 +20,7 @@ kubectl.exe get all
 
 #check the definition deployment and replicaset rs
 kubectl.exe describe deployment 
-kubectl.exe describe rs ng-dep-7bbd6665f9  
+kubectl.exe describe rs ng-dep-58bdc477d5 #CHANGE WITH NEWREplicaSet Name 
 
 # check the rollout history and undo
 kubectl rollout history deploy/ng-dep
