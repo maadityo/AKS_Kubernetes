@@ -30,7 +30,7 @@ kubectl rollout undo deploy/ng-dep
 kubectl get services
 kubectl get deployment
 
-kubectl delete deployment ng-dep
+kubectl delete deployment sample-dep
 kubectl delete service ng-svc
 
 kubectl get pods
