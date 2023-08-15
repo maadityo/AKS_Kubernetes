@@ -1,0 +1,15 @@
+helm install nginx-ingress ingress-nginx/ingress-nginx --namespace ingress-nginx --create-namespace  --set controller.nodeSelector."kubernetes\.io/os"=linux --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux
+
+
+kubectl get svc -n ingress-nginx -o=customcolumns=NAME:.metadata.name,TYPE:.spec.type,IP:.status.loadBalancer.ingress[0].ip
+
+kubectl apply -f .\module3\mysql-initdb-cm.yaml
+
+kubectl apply -f.\module3\mysql-cnf-cm.yaml
+kubectl apply -f.\module3\mysql-dep.yaml
+
+
+kubectl logs -c logreader -f "mysql-dep-757466554-vb5nr"
+
+
+kubectl exec -it -c mysql "mysql-dep-757466554-vb5nr" --bash
