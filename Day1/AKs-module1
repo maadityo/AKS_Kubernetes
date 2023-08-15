@@ -35,3 +35,4 @@ az aks get-credentials --name $AKS_NAME `
 
 # Test the connection
 kubectl get nodes
+
