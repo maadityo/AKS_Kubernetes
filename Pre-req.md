@@ -1,6 +1,3 @@
-# melakukan installasi VS COde pada laptop masing masing (optional)
- https://code.visualstudio.com/download
-
 # Download file pada folder Module1 ke Drive C:\AKS_Day1\
 
 Upload Module1 Folder To Cloud Drive
