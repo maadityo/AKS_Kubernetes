@@ -3,7 +3,8 @@ cd "C:\Users\maadityo\OneDrive - Microsoft\#FY23\PTContoso\module1"
 
 #1. create simple nginx first pod 
 # pada pod2 - memiliki 2 containers
-kubectl.exe apply -f .\Module1\simple-pod2.yaml
+
+
 
 #2. create simple nginx second pod 
 # pada pod - hanya memiliki 1 container
