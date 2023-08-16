@@ -4,12 +4,12 @@ kubectl.exe apply -f .\module1\ng-dep.yaml
 
 kubectl.exe get pods --show-labels
 # code .\module1\ng-dep.yaml
-kubectl.exe apply -f .\ng-svc.yaml
+kubectl.exe apply -f .\module1\ng-svc.yaml
 # check for all, compare with the pods
 kubectl.exe get all --show-labels
 
 # check for services
-kubectl.exe get svc
+kubectl get svc
 
 #update the image from NGINX 1.0 to NGINX 2.0
 kubectl set image deployment ng-dep nginx=k8slab/nginx:2.0
@@ -20,7 +20,10 @@ kubectl.exe get all
 
 #check the definition deployment and replicaset rs
 kubectl.exe describe deployment 
-kubectl.exe describe rs ng-dep-58bdc477d5 #CHANGE WITH NEWREplicaSet Name 
+kubectl.exe describe rs ng-dep-6d8b6c664 #CHANGE WITH NEWREplicaSet Name 
+
+#delete salah satu pod dari deployment, apa yg terjadi
+kubectl delete pod ng-dep-58bdc477d5-2s9r2
 
 # check the rollout history and undo
 kubectl rollout history deploy/ng-dep
