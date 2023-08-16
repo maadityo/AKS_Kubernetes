@@ -9,11 +9,17 @@ $LOCATION="Southeastasia"
 $AKS_IDENTITY="identity-$($INSTANCE_ID)"
 #$VM_SKU="Standard_D2as_v4"
 $VM_SKU="Standard_D2as_v5"
-$SUBS_ID="139a9f00-390b-4a62-99b3-2d64c12cf20e" #HARAP DIGANTI dengan subscription PT Contoso
+#$SUBS_ID="139a9f00-390b-4a62-99b3-2d64c12cf20e" #HARAP DIGANTI dengan subscription PT Contoso
+$SUBS_ID="9926ee03-c7be-4150-8067-b5d83f03c57e"
 $AKS_NAME="aks-$($INSTANCE_ID)"
 #az aks get-credentials --name $AKS_NAME   --resource-group $AKS_RESOURCE_GROUP
 #############################################################################################
-
+#run this command to check \ validate the account
+# az login clear #to clear all the cache
+# az login #to login 
+# az account list -o table #to check all the accounts
+# az account set --subscription XXXXXXX #(fill in with the subscriptionID)
+#################################################
 
 az vm list-sizes --location $LOCATION --query "[?numberOfCores == ``2``].{Name:name}" -o table
 
@@ -36,3 +42,4 @@ az aks get-credentials --name $AKS_NAME `
 # Test the connection
 kubectl get nodes
 
+kubectl get pods
