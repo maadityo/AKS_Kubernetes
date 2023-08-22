@@ -14,3 +14,15 @@ kubectl get pv
 kubectl apply -f .\Module3\azurefile-pvc.yaml
 
 kubectl get pvc
+
+
+# use the PV
+
+kubectl apply -f .\Module3\pvc-pod.yaml
+
+kubectl get pod pvc-pod
+
+kubectl exec -it pvc-pod -- bash
+
+cd /sharedfolder
+touch abc123.txt
