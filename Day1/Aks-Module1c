@@ -10,7 +10,7 @@ kubectl label pod nginx-pod health=problem
 
 kubectl label pod nginx-pod kind=db --overwrite
 # show the label
-kubectl get pod nginx-pod --show-labels
+kubectl get pod  --show-labels
 # remove  the existing label
 
 kubectl label pod nginx-pod health-

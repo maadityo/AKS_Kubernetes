@@ -33,4 +33,3 @@ kubectl config set-context --current --namespace labday4-module2
 kubectl create secret generic azure-secret --from-literal=azurestorageaccountname=$STORAGE_ACCOUNT_NAME --from-literal=azurestorageaccountkey=$STORAGE_KEY --dry-run=client --namespace labday4-module2 -o yaml > azure-secret.yaml
 
 kubectl apply -f azure-secret.yaml -n labday4-module2
-

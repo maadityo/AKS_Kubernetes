@@ -19,11 +19,10 @@ kubectl.exe get pods
 kubectl.exe get all
 
 #check the definition deployment and replicaset rs
-kubectl.exe describe deployment 
-kubectl.exe describe rs ng-dep-6d8b6c664 #CHANGE WITH NEWREplicaSet Name 
+kubectl.exe get deployment 
+kubectl.exe describe deployment ng-dep #CHANGE WITH NEWREplicaSet Name 
 
 #delete salah satu pod dari deployment, apa yg terjadi
-kubectl delete pod ng-dep-58bdc477d5-2s9r2
 
 # check the rollout history and undo
 kubectl rollout history deploy/ng-dep
