@@ -1,0 +1,16 @@
+# Create a Persistent Volume and a Persistent Volume Claim 
+# review the share name
+
+echo $SHARE_NAME
+
+# CHECK THE azurefile-pv.yaml ON Module3 folder. MAKESURE The shareName matches with the SHARE_NAME
+# setelah shareName sudah sesuai dengan SHARE_NAME maka lanjutkan step dibawah
+
+
+
+kubectl apply -f .\Module3\azurefile-pv.yaml
+#cek pv yang sudah di create dan pastikan status:availabe
+kubectl get pv
+kubectl apply -f .\Module3\azurefile-pvc.yaml
+
+kubectl get pvc

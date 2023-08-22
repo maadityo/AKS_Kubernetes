@@ -12,7 +12,7 @@ spec:
   storageClassName: azurefile-csi 
   azureFile:
     secretName: azure-secret
-    shareName: aksshare
+    shareName: sharemathias
     readOnly: false
   mountOptions:
   - dir_mode=0777

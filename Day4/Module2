@@ -9,14 +9,28 @@ $AKS_IDENTITY="identity-$($INSTANCE_ID)"
 $VM_SKU="Standard_D2as_v5"
 $SUBS_ID="139a9f00-390b-4a62-99b3-2d64c12cf20e" #HARAP DIGANTI dengan subscription PT Contoso
 $AKS_NAME="aks-$($INSTANCE_ID)"
-$STORAGE_ACCOUNT_NAME="sa$($INSTANCE_ID)"
+$STORAGE_ACCOUNT_NAME="itmsa$($INSTANCE_ID)"
 $SHARE_NAME="share$($INSTANCE_ID)"
 
 
 # Create azure storage account
-az storage account create --name $STORAGE_ACCOUNT_NAME --resource-group $AKS_RESOURCE_GROUP --sku Standard_LRS
+az storage account create --name $STORAGE_ACCOUNT_NAME --resource-group $AKS_RESOURCE_GROUP --sku Standard_LRS --location $LOCATION
 
 # create azure storage share
 az storage share create --name $SHARE_NAME --connection-string $(az storage account show-connection-string --name $STORAGE_ACCOUNT_NAME --resource-group $AKS_RESOURCE_GROUP -o tsv)
 $STORAGE_KEY = $(az storage account keys list --resource-group $AKS_RESOURCE_GROUP --account-name $STORAGE_ACCOUNT_NAME --query "[0].value" -o tsv)
+
+# this is the key
+$STORAGE_ACCOUNT_NAME
+$STORAGE_KEY
+
+
+# create the namespace for the lab
+kubectl create ns labday4-module2
+kubectl config set-context --current --namespace labday4-module2
+
+# create the secret
+kubectl create secret generic azure-secret --from-literal=azurestorageaccountname=$STORAGE_ACCOUNT_NAME --from-literal=azurestorageaccountkey=$STORAGE_KEY --dry-run=client --namespace labday4-module2 -o yaml > azure-secret.yaml
+
+kubectl apply -f azure-secret.yaml -n labday4-module2
 

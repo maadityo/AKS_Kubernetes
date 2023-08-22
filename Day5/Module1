@@ -1,0 +1,19 @@
+# create azure container registry
+$SUFFIX=(Get-Date -Format "MMddyy")
+$ACR_NAME="acr$($INSTANCE_ID)$($SUFFIX)"
+Write-Host "ACR Name: $ACR_NAME"
+
+
+$ACR_ID=$(az acr create --sku standard --name $ACR_NAME --resource-group $AKS_RESOURCE_GROUP  --query id -o tsv) 
+
+$ACR_ID
+
+
+# get Service Principal ID (SP)from the managed identites - admin permission on AD is required
+
+$AKS_ID=$(az ad sp list --display-name "$AKS_NAME" --query [0].appId -o tsv)
+$AKS_POOL_ID=$(az ad sp list --display-name "$AKS_NAME-agentpool" --query [0].appId -o tsv)
+
+# Assign the AKS cluster **ACR Pull** permissions to your ACR.
+az role assignment create --role "AcrPull" --assignee $AKS_ID --scope $ACR_ID 
+az role assignment create --role "AcrPull" --assignee $AKS_POOL_ID --scope $ACR_ID
