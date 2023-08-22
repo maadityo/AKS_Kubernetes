@@ -6,7 +6,7 @@ metadata:
     storage-provider: azure-file-share
 spec:
   capacity:
-    storage: 5Gi
+    storage: 20Gi
   accessModes:
     - ReadWriteMany
   storageClassName: azurefile-csi 
