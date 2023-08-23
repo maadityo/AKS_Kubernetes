@@ -24,4 +24,4 @@ az role assignment create --role "AcrPull" --assignee $AKS_POOL_ID --scope $ACR_
 # login to ACR
 az acr login --name $ACR_NAME --expose-token
 
-.\module3\buildmt3chainedallacr.ps1 -acrname $ACR_NAME
+.\mathtrick\buildmt3chainedallacr.ps1 -acrname $ACR_NAME
