@@ -1,0 +1,14 @@
+$AKS_RESOURCE_GROUP="k8s-tech-brief-rg"
+$LOCATION="southeastasia"
+$VM_SKU="Standard_D2as_v5"
+$AKS_NAME="maadityo-aks"
+$NODE_COUNT="3"
+$AKS_RESOURCE_GROUP="rg-infra-dev-sg"
+
+
+
+
+helm repo add scubakiz https://scubakiz.github.io/clusterinfo/
+helm repo update
+helm install clusterinfo scubakiz/clusterinfo
+
