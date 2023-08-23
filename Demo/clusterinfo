@@ -1,11 +1,14 @@
-$AKS_RESOURCE_GROUP="k8s-tech-brief-rg"
 $LOCATION="southeastasia"
 $VM_SKU="Standard_D2as_v5"
 $AKS_NAME="maadityo-aks"
 $NODE_COUNT="3"
 $AKS_RESOURCE_GROUP="rg-infra-dev-sg"
 
-
+az aks create --node-count $NODE_COUNT `
+--generate-ssh-keys `
+--node-vm-size $VM_SKU `
+--name $AKS_NAME `
+--resource-group $AKS_RESOURCE_GROUP
 
 
 helm repo add scubakiz https://scubakiz.github.io/clusterinfo/
