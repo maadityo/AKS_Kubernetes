@@ -19,6 +19,7 @@ $AKS_NAME="aks-$($INSTANCE_ID)"
 # az login #to login 
 # az account list -o table #to check all the accounts
 # az account set --subscription 9926ee03-c7be-4150-8067-b5d83f03c57e #(fill in with the subscriptionID)
+# Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 #################################################
 az vm list-sizes --location $LOCATION --query "[?numberOfCores == ``2``].{Name:name}" -o table
 

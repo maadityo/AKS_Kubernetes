@@ -12,7 +12,7 @@ function CleanUp ([string] $done) {
 }
 
 # Change to the demo folder
-Set-Location HPA
+Set-Location .\demo\Module7\HPA
 . "..\..\CISendMessage.ps1"
 
 StartScript
